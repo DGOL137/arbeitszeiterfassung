@@ -1,0 +1,128 @@
+{% extends 'base_public.html.twig' %}
+
+{% block title %}DZS | Registrierung{% endblock %}
+
+{% block body %}
+<div class="col d-flex justify-content-center align-items-center flex-column">
+
+    <h1 class="fw-normal fs-4 mb-4">Registrierung</h1>
+    <p class="mb-3 fs-6">Geben Sie Ihre Daten ein, um sich zu registrieren.</p>
+
+    <div class="form-container">
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <form action="{{ path('registrierung_durchfuehren') }}" method="post">
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('registrierung') }}">
+
+
+            <div class="form-group position-relative has-icon-left mb-3">
+                <input type="text"
+                       class="form-control form-control-xl fs-6 pt-2 pb-2"
+                       name="inputFirstname"
+                       placeholder="Vorname*"
+                       autocomplete="given-name"
+                       required>
+                <div class="form-control-icon d-flex align-items-center">
+                    <i class="bi bi-person"></i>
+                </div>
+            </div>
+
+            <div class="form-group position-relative has-icon-left mb-3">
+                <input type="text"
+                       class="form-control form-control-xl fs-6 pt-2 pb-2"
+                       name="inputLastname"
+                       placeholder="Nachname*"
+                       autocomplete="family-name"
+                       required>
+                <div class="form-control-icon d-flex align-items-center">
+                    <i class="bi bi-person"></i>
+                </div>
+            </div>
+
+            <div class="form-group position-relative has-icon-left mb-3">
+                <input type="text"
+                       class="form-control form-control-xl fs-6 pt-2 pb-2"
+                       name="inputEmail"
+                       placeholder="Email*"
+                       autocomplete="email"
+                       required>
+                <div class="form-control-icon d-flex align-items-center">
+                    <i class="bi bi-envelope"></i>
+                </div>
+            </div>
+
+            <div class="form-group position-relative has-icon-left mb-3">
+                <input type="text"
+                       class="form-control form-control-xl fs-6 pt-2 pb-2"
+                       name="inputEmployeenumber"
+                       placeholder="Mitarbeiternummer*"
+                       required>
+                <div class="form-control-icon d-flex align-items-center">
+                    <i class="bi bi-123"></i>
+                </div>
+            </div>
+
+            <div class="form-group position-relative has-icon-left mb-3">
+                <input type="password"
+                       class="form-control form-control-xl fs-6 pt-2 pb-2"
+                       name="inputPassword"
+                       placeholder="Passwort*"
+                       autocomplete="new-password"
+                       required>
+                <div class="form-control-icon d-flex align-items-center">
+                    <i class="bi bi-shield-lock"></i>
+                </div>
+            </div>
+
+            <div class="form-group position-relative has-icon-left mb-3">
+                <input type="password"
+                       class="form-control form-control-xl fs-6 pt-2 pb-2"
+                       name="inputPasswordRpt"
+                       placeholder="Passwort bestätigen*"
+                       autocomplete="new-password"
+                       required>
+                <div class="form-control-icon d-flex align-items-center">
+                    <i class="bi bi-shield-lock"></i>
+                </div>
+            </div>
+
+            <div class="form-group position-relative d-flex align-items-center mb-3 fs-6">
+                <input type="checkbox"
+                       class="form-check-input me-2 fs-5 font-color-ds-red"
+                       name="inputPrivacy"
+                       id="flexCheckDefault"
+                       value="1"
+                       required>
+                <label class="form-check-label fw-normal" for="flexCheckDefault">
+                    Ich habe die <a href="{{ path('datenschutz') }}">Datenschutzerklärung</a> zur Kenntnis genommen*
+                </label>
+            </div>
+
+            <div class="fs-7 mb-3">
+                Pflichtangaben sind mit einem * gekennzeichnet
+            </div>
+
+            <button class="btn btn-primary btn-block btn-lg shadow-lg fs-6 w-100" type="submit">
+                Registrieren
+            </button>
+
+        </form>
+
+        <div class="text-center mt-1 fs-6">
+            <p class="text-gray-600 mb-0">
+                Sie besitzen bereits einen Account?
+                <a href="{{ path('anmeldung') }}">Anmelden</a>
+            </p>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

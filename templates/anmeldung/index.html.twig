@@ -1,0 +1,58 @@
+{% extends 'base_public.html.twig' %}
+
+{% block title %}DZS | Anmeldung{% endblock %}
+
+{% block body %}
+<div class="col d-flex justify-content-center align-items-center flex-column">
+
+    <h1 class="fw-normal fs-4 mb-4">Anmeldung</h1>
+    <p class="mb-3 fs-6">Geben Sie Ihre Daten ein, um sich anzumelden.</p>
+
+    <div class="form-container">
+
+        {% for label, messages in app.flashes() %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+
+        <form action="{{ path('anmeldung') }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <div class="form-group position-relative has-icon-left mb-3">
+                <input type="text" class="form-control form-control-xl fs-6 pt-2 pb-2"
+                       name="inputEmail" placeholder="Email*" autocomplete="email" required>
+                <div class="form-control-icon d-flex align-items-center">
+                    <i class="bi bi-envelope"></i>
+                </div>
+            </div>
+
+            <div class="form-group position-relative has-icon-left mb-3">
+                <input type="password" class="form-control form-control-xl fs-6 pt-2 pb-2"
+                       name="inputPassword" placeholder="Passwort*" autocomplete="current-password" required>
+                <div class="form-control-icon d-flex align-items-center">
+                    <i class="bi bi-shield-lock"></i>
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-block btn-lg shadow-lg fs-6 w-100" type="submit">
+                Anmelden
+            </button>
+
+        </form>
+
+        <div class="text-center mt-1 fs-6">
+            <p class="text-gray-600 mb-0">
+                Sie besitzen noch keinen Account? <a href="{{ path('registrierung') }}">Registrieren</a>
+            </p>
+            <p class="text-gray-600 mb-0">
+                <a href="{{ path('passwort-vergessen') }}">Passwort vergessen?</a>
+            </p>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

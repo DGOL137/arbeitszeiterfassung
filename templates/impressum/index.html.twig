@@ -1,0 +1,50 @@
+{% extends 'base_public.html.twig' %}
+
+{% block title %}DZS | Impressum{% endblock %}
+
+{% block body %}
+<h1 class="fw-normal fs-4 mb-4">Impressum</h1>
+
+<p class="mb-3">
+    <strong>{{ impressum.provider.company_name }}</strong><br>
+    {{ impressum.provider.street }}<br>
+    {{ impressum.provider.zip }} {{ impressum.provider.city }}<br>
+    {{ impressum.provider.country }}
+</p>
+
+{% if impressum.represented_by is defined and impressum.represented_by|length %}
+<p class="mb-3">
+    Vertreten durch:<br>
+    {% for person in impressum.represented_by %}
+        {{ person }}{% if not loop.last %}<br>{% endif %}
+    {% endfor %}
+</p>
+{% endif %}
+
+<p class="mb-3">
+    Kontakt:<br>
+    E-Mail:
+    <a href="mailto:{{ impressum.contact.email }}">
+        {{ impressum.contact.email }}
+    </a>
+    {% if impressum.contact.phone is defined %}
+        <br>Telefon: {{ impressum.contact.phone }}
+    {% endif %}
+</p>
+
+{% if impressum.register is defined %}
+<p class="mb-3">
+    Registereintrag:<br>
+    {{ impressum.register.court }}<br>
+    {{ impressum.register.number }}
+</p>
+{% endif %}
+
+{% if impressum.vat_id is defined %}
+<p class="mb-0">
+    Umsatzsteuer-ID:<br>
+    {{ impressum.vat_id }}
+</p>
+{% endif %}
+
+{% endblock %}

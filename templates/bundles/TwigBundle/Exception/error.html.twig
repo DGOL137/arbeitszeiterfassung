@@ -1,0 +1,36 @@
+{% extends 'base_public.html.twig' %}
+
+{% block title %}DZS | Fehler{% endblock %}
+
+{% block body %}
+<div class="text-center">
+
+    <h1 class="fw-normal fs-4 mb-4">
+        Es ist ein Fehler aufgetreten
+    </h1>
+
+    <p class="mb-3 fs-6">
+        Die gewünschte Seite konnte leider nicht angezeigt werden.
+        Bitte versuchen Sie es später erneut.
+    </p>
+
+    <p class="mb-4 fs-6">
+        Sollte das Problem weiterhin bestehen, wenden Sie sich bitte an Ihren Administrator oder Support.
+    </p>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="{{ path('start') }}" class="btn btn-primary btn-lg me-2">
+            Startseite
+        </a>
+    {% else %}
+        <a href="{{ path('anmeldung') }}" class="btn btn-primary btn-lg me-2">
+            Anmeldung
+        </a>
+    {% endif %}
+
+    <a href="javascript:history.back()" class="btn btn-primary btn-lg me-2">
+        Zurück
+    </a>
+
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DZS | Erfassung{% endblock %}
+
+{% block body %}
+<section class="row">
+    <div class="col-12 col-lg-8 offset-lg-2">
+        <div class="card">
+            <div class="card-body">
+                {# Flash-Messages #}
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label == 'error' ? 'danger' : 'success' }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% if aktiveErfassung %}
+                    <p><strong>Erfassung gestartet am:</strong> {{ heute|date('d.m.Y') }} – {{ aktiveErfassung.startzeit|date('H:i') }}</p>
+                    <p><strong>Projekt:</strong> {{ aktiveErfassung.projekt.projektnummer }}</p>
+                    <p><strong>Bemerkung:</strong> {{ aktiveErfassung.bemerkung }}</p>
+                    <form method="post" action="{{ path('erfassung_ende') }}">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('erfassung_ende') }}">
+
+                        <button type="submit" class="btn btn-danger">Erfassung beenden</button>
+                    </form>
+                {% else %}
+                    <form method="post" action="{{ path('erfassung_start') }}">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('erfassung_start') }}">
+
+                        <div class="mb-3">
+    <label for="projektnummer" class="form-label">Projektnummer:</label>
+    <input type="text" class="form-control" id="projektnummer" name="projektnummer" pattern="\d{5}" required>
+</div>
+                        <div class="mb-3">
+                            <label for="bemerkung" class="form-label">Bemerkung:</label>
+                            <textarea class="form-control" id="bemerkung" name="bemerkung" rows="3" placeholder="z. B. Tätigkeiten, Besonderheiten …"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Erfassung starten</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

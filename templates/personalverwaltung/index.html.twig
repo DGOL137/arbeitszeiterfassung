@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DZS | Personalübersicht{% endblock %}
+
+{% block body %}
+<section class="row">
+    <div class="col-12 col-lg-10 offset-lg-1">
+        <div class="card">
+            <div class="card-body">
+                <form method="get" class="row mb-4">
+                    <div class="col-md-3">
+                        <label for="monat" class="form-label">Monat:</label>
+                        <select name="monat" id="monat" class="form-select">
+                            {% for m in 1..12 %}
+                                {% set dateStr = "2024-" ~ "%02d"|format(m) ~ "-01" %}
+                                {% set dateObj = date(dateStr) %}
+                                <option value="{{ m }}" {{ m == monat ? 'selected' : '' }}>
+                                    {{ dateObj|date("F", 'Europe/Berlin', 'de') }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="jahr" class="form-label">Jahr:</label>
+                        <select name="jahr" id="jahr" class="form-select">
+                            {% for j in 2023..aktuellesJahr %}
+                                <option value="{{ j }}" {{ j == jahr ? 'selected' : '' }}>{{ j }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="mitarbeiternummer" class="form-label">Mitarbeiternummer:</label>
+                        <select name="mitarbeiternummer" id="mitarbeiternummer" class="form-select">
+                            <option value="">Alle</option>
+                            {% for mitarbeiter in alleMitarbeiter %}
+                                <option value="{{ mitarbeiter.mitarbeiternummer }}" {{ mitarbeiter.mitarbeiternummer == mitarbeiternummer ? 'selected' : '' }}>
+                                    {{ mitarbeiter.mitarbeiternummer }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">Filtern</button>
+                    </div>
+                </form>
+
+                {% if arbeitszeiten is empty %}
+                    <p>Es sind wurden keine Arbeitszeiten im gewählten Zeitraum erfasst.</p>
+                {% else %}
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Datum</th>
+                                <th>Mitarbeiternummer</th>
+                                <th>Beginn</th>
+                                <th>Ende</th>
+                                <th>Dauer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for eintrag in arbeitszeiten %}
+                                <tr>
+                                    <td>{{ eintrag.datum|date('d.m.Y') }}</td>
+                                    <td>{{ eintrag.mitarbeiter.mitarbeiternummer }}</td>
+                                    <td>{{ eintrag.startzeit ? eintrag.startzeit|date('H:i') : '-' }}</td>
+                                    <td>{{ eintrag.endzeit ? eintrag.endzeit|date('H:i') : '-' }}</td>
+                                    <td>
+                                        {% if eintrag.startzeit and eintrag.endzeit %}
+                                            {% set dauer = eintrag.endzeit.diff(eintrag.startzeit) %}
+                                            {{ '%02d'|format(dauer.h) }}:{{ '%02d'|format(dauer.i) }}
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DZS | Hilfe{% endblock %}
+
+{% block body %}
+<section class="row">
+    <div class="col-12 col-lg-8 offset-lg-2">
+        <div class="card">
+            <div class="card-body">
+            {% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+        </div>
+        {% endfor %}
+
+        {% for message in app.flashes('error') %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+{% endfor %}
+                <h2>Hilfe & Support</h2>
+                <p>Willkommen im Hilfe-Bereich der DZS-Anwendung. Hier finden Sie Unterstützung und Antworten auf häufig gestellte Fragen.</p>
+
+                <h3>Häufig gestellte Fragen (FAQ)</h3>
+                <ul>
+                    <li><strong>Wie melde ich mich an?</strong><br>Um sich anzumelden, klicken Sie auf die Schaltfläche "Anmeldung" auf der Startseite und geben Sie Ihre Zugangsdaten ein.</li>
+                    <li><strong>Was mache ich, wenn ich mein Passwort vergessen habe?</strong><br>Klicken Sie auf der Anmeldeseite auf "Passwort vergessen" und folgen Sie den Anweisungen, um Ihr Passwort zurückzusetzen.</li>
+                    <li><strong>Wie kontaktiere ich den Support?</strong><br>Sie können den Support per E-Mail unter
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,22 @@
+# config/packages/impressum.yaml
+parameters:
+  impressum:
+    provider:
+      company_name: "Beispiel GmbH"
+      street: "Beispielstraße 1-3"
+      zip: "12345"
+      city: "Beispielstadt"
+      country: "Deutschland"
+
+    represented_by:
+      - "Daniel Goletz"
+
+    contact:
+      email: "info@beispiel-gmbh.xyz"
+      phone: "+49 (0)1234 56 78 90"
+
+    register:
+      court: "Amtsgericht Beispielstadt"
+      number: "HRB 1234"
+
+    vat_id: "DE 123 45 67 89"

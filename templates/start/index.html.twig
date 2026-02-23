@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DZS | Startseite{% endblock %}
+
+{% block body %}
+<section class="row">
+    <div class="col-12 col-lg-12">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <p>
+    Willkommen <span class="font-color-dsred">{{ app.user.vorname }} {{ app.user.nachname }}</span>,<br>
+    wir freuen uns, Sie in unserem digitalen Arbeitszeiterfassungssystem begrüßen zu dürfen.
+</p>
+                                            <p>Dieses System wurde entwickelt, um Ihnen den Arbeitsalltag zu erleichtern und die Erfassung sowie Verwaltung Ihrer Arbeitszeiten so effizient wie möglich zu gestalten.</p>
+
+                                            <p>Was können Sie hier tun?</p>
+                                            <p><span class="font-color-dsred">Arbeitszeiterfassung leicht gemacht:</span><br>
+                                            Mit nur wenigen Klicks können Sie mit der Erfassung Ihrer Arbeitszeit beginnen und diese spezifischen Projekten zuordnen.
+                                            Fügen Sie bei Bedarf Bemerkungen hinzu.</p>
+
+                                            <p><span class="font-color-dsred">Detaillierte Übersicht:</span><br>
+                                            Behalten Sie den Überblick über Ihre erfassten Arbeitszeiten und lassen Sie sich Ihre persönliche Historie anzeigen.</p>
+
+
+                                            <p><span class="font-color-dsred">Persönliche Daten verwalten:</span><br>
+                                            Prüfen Sie Ihre erfassten Daten und behalten Sie die volle Kontrolle über Ihre Informationen.
+                                            Ihre Daten werden gemäß den Standards der Datensicherheit und den Anforderungen der Datenschutz-Grundverordnung geschützt.
+                                            Sie haben jederzeit die Möglichkeit, Ihre Daten einzusehen und bei Bedarf Änderungen vorzunehmen oder Ihre Einwilligung zu widerrufen.</p>
+
+                                            <p>Vielen Dank, dass Sie unser System nutzen.</p>
+                                            <p>Wir wünschen Ihnen eine angenehme Zeit bei der Arbeit!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

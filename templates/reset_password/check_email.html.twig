@@ -1,0 +1,51 @@
+{% extends 'base_public.html.twig' %}
+
+{% block title %}DZS | Passwort vergessen{% endblock %}
+
+{% block body %}
+<div class="col d-flex justify-content-center align-items-center flex-column">
+
+    <h1 class="fw-normal fs-4 mb-4">Passwort vergessen</h1>
+    <p class="mb-3 fs-6">
+        Geben Sie Ihre E-Mail-Adresse ein, um Ihr Passwort zurückzusetzen.
+    </p>
+
+    <div class="form-container">
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <form action="{{ path('passwort-anfordern') }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('passwort_anfordern') }}">
+
+            <div class="form-group position-relative has-icon-left mb-3">
+                <input type="email"
+                       class="form-control form-control-xl fs-6 pt-2 pb-2"
+                       name="inputEmail"
+                       placeholder="E-Mail-Adresse"
+                       required>
+                <div class="form-control-icon d-flex align-items-center">
+                    <i class="bi bi-envelope"></i>
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-lg w-100">
+                Passwort zurücksetzen
+            </button>
+        </form>
+
+        <div class="text-center mt-1 fs-6">
+            <p class="text-gray-600 mb-0">
+                Sie besitzen noch keinen Account?
+                <a href="{{ path('registrierung') }}">Registrieren</a>
+            </p>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

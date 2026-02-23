@@ -1,0 +1,30 @@
+### Secrets / Env (lokal behalten, niemals pushen)
+.env
+.env.local
+.env.*.local
+/.env.local.php
+
+### Symfony runtime (lokal, nicht pushen)
+/var/
+
+### Composer (lokal, nicht pushen)
+/vendor/
+
+### Node / Frontend (falls vorhanden)
+/node_modules/
+/public/build/
+/public/bundles/
+
+### Tests / Coverage
+/.phpunit.cache/
+/coverage/
+phpunit.xml
+
+### Logs
+*.log
+
+### IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

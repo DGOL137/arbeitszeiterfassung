@@ -1,0 +1,117 @@
+/* ========== Global (Public + Auth) ========== */
+
+:root {
+  --ds-red: #df0037;
+}
+
+html,
+body {
+  height: 100vh;
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ========== Layout Grid ========== */
+
+.grid-container {
+  flex: 1;
+  display: grid;
+  grid-template-areas:
+    "row-top"
+    "row-center"
+    "row-bottom";
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
+}
+
+.row-top {
+  grid-area: row-top;
+}
+
+.row-center {
+  grid-area: row-center;
+}
+
+.row-bottom {
+  grid-area: row-bottom;
+}
+
+/* ========== Header ========== */
+
+.app-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+/* ========== Auth / Forms ========== */
+
+.form-container {
+  width: 100%;
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.form-control-icon {
+  transform: translateY(-55%);
+  color: #999;
+}
+
+input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 71, 71, 0.326) !important;
+  border-color: var(--ds-red) !important;
+}
+
+/* ========== Public Content (Impressum / Datenschutz) ========== */
+
+.public-content {
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+}
+
+/* ========== Manuelle Anpassungen ========== */
+
+.pt-6 {
+  padding-top: 5rem;
+}
+
+.pb-6 {
+  padding-bottom: 5rem;
+}
+
+.fs-7 {
+  font-weight: normal;
+  font-size: 0.85rem;
+}
+
+.fs-8 {
+  font-weight: normal;
+  font-size: 0.75rem;
+}
+
+.font-color-ds-red {
+  color: var(--ds-red);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ========== Footer ========== */
+
+.row-bottom a {
+  color: var(--ds-red);
+  text-decoration: none;
+}
+
+.row-bottom a:hover {
+  text-decoration: underline;
+}

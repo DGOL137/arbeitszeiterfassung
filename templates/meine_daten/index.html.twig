@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DZS | Meine Daten{% endblock %}
+
+{% block body %}
+<section class="row">
+    <div class="col-12 col-lg-8 offset-lg-2">
+        <div class="card">
+            <div class="card-body">
+            {% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+        </div>
+        {% endfor %}
+
+        {% for message in app.flashes('error') %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+{% endfor %}
+                <form method="post" action="{{ path('meine_daten_speichern') }}">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('meine_daten') }}">
+
+                                    <div class="mb-3">
+                        <label for="mitarbeiternummer" class="form-label">Mitarbeiternummer:</label>
+                        <input type="text" class="form-control" id="mitarbeiternummer" name="mitarbeiternummer" value="{{ app.user.mitarbeiternummer }}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rolle" class="form-label">Benutzerrolle:</label>
+                        <input type="text" class="form-control" id="rolle" name="rolle" value="{{ app.user.rolle.bezeichnung }}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="vorname" class="form-label">Vorname:</label>
+                        <input type="text" class="form-control" id="vorname" name="vorname" value="{{ app.user.vorname }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nachname" class="form-label">Nachname:</label>
+                        <input type="text" class="form-control" id="nachname" name="nachname" value="{{ app.user.nachname }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-Mail-Adresse:</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ app.user.email }}">
+                    </div>
+<div class="mb-3">
+    <label for="datenschutzStatus" class="form-label">Datenschutz-Status</label>
+    <select class="form-select" id="datenschutzStatus" name="datenschutzStatus">
+        <option value="zugestimmt" {{ app.user.datenschutzStatus.bezeichnung == 'zugestimmt' ? 'selected' : '' }}>zugestimmt</option>
+        <option value="nicht zugestimmt" {{ app.user.datenschutzStatus.bezeichnung == 'nicht zugestimmt' ? 'selected' : '' }}>nicht zugestimmt</option>
+    </select>
+</div>
+
+
+                    <!-- Weitere Felder bei Bedarf hier -->
+
+                    <button type="submit" class="btn btn-primary">Speichern</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
