@@ -1,3 +1,7 @@
 public/* linguist-vendored
 assets/* linguist-vendored
 *.min.js linguist-vendored
+/public/build/* linguist-vendored
+/public/bundles/* linguist-vendored
+/node_modules/* linguist-vendored
+/vendor/* linguist-vendored
