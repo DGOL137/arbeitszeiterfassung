@@ -5,3 +5,4 @@ assets/* linguist-vendored
 /public/bundles/* linguist-vendored
 /node_modules/* linguist-vendored
 /vendor/* linguist-vendored
+*.php linguist-detectable=true
