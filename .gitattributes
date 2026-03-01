@@ -1,1 +1,4 @@
 *.php linguist-language=PHP
+*.lock linguist-vendored
+composer.lock linguist-vendored
+symfony.lock linguist-vendored
