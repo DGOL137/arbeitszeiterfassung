@@ -1,6 +1,6 @@
-/public/assets/compiled/** linguist-vendored
-/public/build/** linguist-vendored
-/public/bundles/** linguist-vendored
-/node_modules/** linguist-vendored
-/vendor/** linguist-vendored
+/public/assets/compiled/** linguist-generated
+/public/build/** linguist-generated
+/public/bundles/** linguist-generated
 *.min.js linguist-vendored
+*.min.css linguist-vendored
+*.svg linguist-vendored
