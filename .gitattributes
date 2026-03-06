@@ -1,3 +1,4 @@
+/public/assets/compiled/** linguist-vendored
 /public/build/** linguist-vendored
 /public/bundles/** linguist-vendored
 /node_modules/** linguist-vendored
