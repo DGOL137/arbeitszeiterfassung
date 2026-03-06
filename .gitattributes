@@ -1,4 +1,4 @@
-/public/assets/compiled/** linguist-generated
+/public/assets/** linguist-vendored
 /public/build/** linguist-generated
 /public/bundles/** linguist-generated
 *.min.js linguist-vendored
